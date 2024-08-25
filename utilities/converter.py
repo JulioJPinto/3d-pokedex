@@ -15,13 +15,13 @@ def convert_to_obj(input_file, output_file):
 def convert_models_in_directory(directory):
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith(('.fbx', '.dae')):
+            if file.endswith('.dae'):
                 input_path = os.path.join(root, file)
                 output_path = os.path.splitext(input_path)[0] + '.obj'
                 convert_to_obj(input_path, output_path)
 
 # Specify the directory containing your models
-models_directory = '/path/to/extracted/files'
+models_directory = 'downloads/Pokemon XY'
 
 # Convert all models in the directory to OBJ
 convert_models_in_directory(models_directory)
