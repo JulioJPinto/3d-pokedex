@@ -72,10 +72,12 @@ export default function Home() {
   });
 
   return (
-    <main className='bg-white'>
-      <div className='container mx-auto py-8 flex min-h-screen flex-col items-center justify-center'>
-        <h1 className="text-4xl font-bold mb-4 text-black">Pokédex</h1>
-        <div className="w-full max-w-5xl mb-8 flex flex-row gap-2">
+    <main className='bg-white '>
+      <div className='flex flex-col min-h-screen container mx-auto'>
+        {/* Fixed Header Section */}
+        <header className='w-full max-w-5xl mx-auto py-8 flex flex-col items-center bg-white'>
+          <h1 className="text-4xl font-bold mb-4 text-black">3D Pokédex</h1>
+          <div className="w-full max-w-5xl mb-8 flex flex-row gap-2">
             <input
               type="text"
               placeholder="Search Pokémon by name, number, or type..."
@@ -97,28 +99,30 @@ export default function Home() {
               ))}
             </select>
           </div>
-        
+        </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-5xl">
-          {filteredPokemon.map(pokemon => (
-            <Link key={pokemon.id} href={`/pokemon/${pokemon.id}`} className="group rounded-lg border border-gray-200 p-4 text-center hover:bg-gray-100 transition">
-              <Image
-                src={pokemon.sprites.front_default}
-                alt={pokemon.name}
-                width={100}
-                height={100}
-                className="mx-auto mb-2"
-              />
-              <p className="text-sm text-gray-500">#{pokemon.id}</p>
-              <p className="text-sm text-gray-500">
-                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-              </p>
-            </Link>
-          ))}
-        </div>
+        {/* Scrollable Content Section */}
+        <main className='flex-grow w-full max-w-5xl mx-auto overflow-y-auto'>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+            {filteredPokemon.map(pokemon => (
+              <Link key={pokemon.id} href={`/pokemon/${pokemon.id}`} className="group rounded-lg border border-gray-200 p-4 text-center hover:bg-gray-100 transition">
+                <Image
+                  src={pokemon.sprites.front_default}
+                  alt={pokemon.name}
+                  width={100}
+                  height={100}
+                  className="mx-auto mb-2"
+                />
+                <p className="text-sm text-gray-500">#{pokemon.id}</p>
+                <p className="text-sm text-gray-500">
+                  {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </main>
       </div>
-
-        
+    
     </main>
   );
 }
